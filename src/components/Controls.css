@@ -1,0 +1,133 @@
+.control-group {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.control-group__label {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.control-group__label--tight {
+  margin: 0;
+}
+
+.stepper {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  background: var(--surface-muted);
+}
+
+.stepper__button {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #f8fafc;
+  font-size: 1.5rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.stepper__value {
+  text-align: center;
+  color: var(--text-strong);
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.segmented-control {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.segmented-control__button {
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background: var(--surface-muted);
+  color: var(--text-primary);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.segmented-control__button.is-active {
+  color: #f8fafc;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  background: var(--surface-muted);
+}
+
+.toggle-row__content {
+  flex: 1;
+}
+
+.toggle-row__hint {
+  margin-top: 4px;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-flex;
+  min-width: 54px;
+  height: 32px;
+}
+
+.toggle-switch__input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.toggle-switch__track {
+  position: relative;
+  width: 54px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.28);
+  transition: background 0.2s ease;
+}
+
+.toggle-switch__thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.toggle-switch__input:checked + .toggle-switch__track {
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+}
+
+.toggle-switch__input:checked + .toggle-switch__track .toggle-switch__thumb {
+  transform: translateX(22px);
+}
