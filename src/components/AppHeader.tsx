@@ -29,6 +29,8 @@ export function AppHeader({
   onNavigate,
   onThemeChange,
 }: AppHeaderProps) {
+  const showNavigation = currentScreen !== 'session';
+
   return (
     <header className="app-header">
       <div className="app-header__top-row">
@@ -72,18 +74,20 @@ export function AppHeader({
         </p>
       ) : null}
 
-      <nav className="app-header__nav" aria-label="Navigare principală">
-        {navigationItems.map((item) => (
-          <button
-            key={item.screen}
-            className={`app-header__nav-button${currentScreen === item.screen ? ' is-active' : ''}`}
-            type="button"
-            onClick={() => onNavigate(item.screen)}
-          >
-            {item.label}
-          </button>
-        ))}
-      </nav>
+      {showNavigation ? (
+        <nav className="app-header__nav" aria-label="Navigare principală">
+          {navigationItems.map((item) => (
+            <button
+              key={item.screen}
+              className={`app-header__nav-button${currentScreen === item.screen ? ' is-active' : ''}`}
+              type="button"
+              onClick={() => onNavigate(item.screen)}
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
+      ) : null}
     </header>
   );
 }

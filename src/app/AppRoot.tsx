@@ -85,7 +85,7 @@ export default function AppRoot() {
 
     setSettings({ ...DEFAULT_SETTINGS, ...savedSettings });
     setHistory(Array.isArray(savedHistory) ? savedHistory : []);
-    setSafetyAccepted(savedSafety === true);
+    setSafetyAccepted(savedSafety);
   }, []);
 
   useEffect(() => {
@@ -559,18 +559,20 @@ export default function AppRoot() {
   return (
     <div className={`app theme-${settings.theme}`}>
       <div className="app-shell">
-        <AppHeader
-          canInstall={installPrompt !== null}
-          currentScreen={screen}
-          isInstalled={isInstalled}
-          onInstall={() => {
-            void handleInstallApp();
-          }}
-          theme={settings.theme}
-          showIosHint={showIosInstallHint}
-          onNavigate={setScreen}
-          onThemeChange={handleThemeToggle}
-        />
+        {screen !== 'session' ? (
+          <AppHeader
+            canInstall={installPrompt !== null}
+            currentScreen={screen}
+            isInstalled={isInstalled}
+            onInstall={() => {
+              void handleInstallApp();
+            }}
+            theme={settings.theme}
+            showIosHint={showIosInstallHint}
+            onNavigate={setScreen}
+            onThemeChange={handleThemeToggle}
+          />
+        ) : null}
 
         {screen === 'dashboard' && (
           <DashboardScreen
@@ -653,9 +655,11 @@ export default function AppRoot() {
 }
 
 function isSessionActive(phase: Phase) {
-  return [PHASES.BREATHING, PHASES.HOLD, PHASES.RECOVERY].includes(phase);
+  const activePhases: Phase[] = [PHASES.BREATHING, PHASES.HOLD, PHASES.RECOVERY];
+  return activePhases.includes(phase);
 }
 
 function isSessionVisiblePhase(phase: Phase) {
-  return [PHASES.BREATHING, PHASES.HOLD, PHASES.RECOVERY, PHASES.PAUSED].includes(phase);
+  const visiblePhases: Phase[] = [PHASES.BREATHING, PHASES.HOLD, PHASES.RECOVERY, PHASES.PAUSED];
+  return visiblePhases.includes(phase);
 }
